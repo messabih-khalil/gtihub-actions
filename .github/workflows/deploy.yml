@@ -16,10 +16,12 @@ jobs:
             MONGO_INITDB_ROOT_USERNAME: root
             MONGO_INITDB_ROOT_PASSWORD: root
             MONGO_HOST: 127.0.0.1:27017
-            
+
         steps:
             - name: Get code from repo
               uses: actions/checkout@v3
+            - name: run server
+              run: npm start & npx wait-on http://127.0.0.1:3000
             - name: install dependecies
               run: npm ci
             - name: run tests
