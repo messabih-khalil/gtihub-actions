@@ -1,0 +1,29 @@
+name: Deploy express & ts app
+on: push
+jobs:
+    # Testing stage
+    test:
+        runs-on: ubuntu-latest
+        services:
+            mongo:
+                image: mongo
+                env:
+                    MONGO_INITDB_ROOT_USERNAME: root
+                    MONGO_INITDB_ROOT_PASSWORD: root
+                ports:
+                    - 27017:27017
+        env:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: root
+            MONGO_HOST: 127.0.0.1:27017
+            
+        steps:
+            - name: Get code from repo
+              uses: actions/checkout@v3
+            - name: install dependecies
+              run: npm ci
+            - name: run tests
+              run: npm test
+    # build stage
+
+    # deploy stage
