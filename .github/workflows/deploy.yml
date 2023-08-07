@@ -13,9 +13,9 @@ jobs:
                 ports:
                     - 27017:27017
         env:
-            MONGO_INITDB_ROOT_USERNAME: root
-            MONGO_INITDB_ROOT_PASSWORD: root
-            MONGO_HOST: 127.0.0.1:27017
+            MONGO_INITDB_ROOT_USERNAME: admin
+            MONGO_INITDB_ROOT_PASSWORD: Azjf30m1IMykI3Y9
+            MONGO_HOST: cluster0.hzmqegq.mongodb.net
 
         steps:
             - name: Get code from repo
@@ -39,4 +39,13 @@ jobs:
         steps:
             - name: get code from repo
               uses: actions/checkout@v3
+            - name: install dependecies
+              run: npm ci
+            - name: run build
+              run: npm run build
+            - name: save the result in artifact
+              uses: actions/upload-artifact@v3
+              with:
+                  name: my-artifact
+                  path: dist
     # deploy stage
