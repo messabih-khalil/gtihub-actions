@@ -10,6 +10,8 @@ const [dbUser, dbPassword, dbHost] = [
     process.env.MONGO_HOST,
 ];
 
+app.use(express.json());
+
 // Connect to MongoDB
 mongoose
     .connect(
