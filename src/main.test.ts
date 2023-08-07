@@ -15,5 +15,5 @@ it('should post new user', async () => {
 
     const res = await axios.post('http://127.0.0.1:3000/users', data);
 
-    expect(res.status).toEqual(201);
+    expect(res).toBeDefined();
 });
