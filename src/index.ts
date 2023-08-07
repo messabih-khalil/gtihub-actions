@@ -1,4 +1,5 @@
 import express, { Request, Response } from 'express';
+import User from './models';
 import mongoose from 'mongoose';
 const app = express();
 const port = process.env.PORT || 3000;
@@ -25,6 +26,15 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Hello, TypeScript Express!');
 });
 
+app.post('/users', async (req: Request, res: Response) => {
+    const { name, email } = req.body;
+    const user = await User.create({
+        name,
+        email,
+    });
+
+    res.status(201).json(user);
+});
 app.listen(port, () => {
     console.log(`Server running at http://localhost:${port}`);
 });

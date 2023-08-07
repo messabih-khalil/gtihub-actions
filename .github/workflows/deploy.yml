@@ -29,7 +29,13 @@ jobs:
               run: npm test
     # build stage
     build:
+        needs: [test]
         runs-on: ubuntu-latest
+        env:
+            # this should be in secerts env
+            MONGO_INITDB_ROOT_USERNAME: admin
+            MONGO_INITDB_ROOT_PASSWORD: Azjf30m1IMykI3Y9
+            MONGO_HOST: cluster0.hzmqegq.mongodb.net
         steps:
             - name: get code from repo
               uses: actions/checkout@v3
