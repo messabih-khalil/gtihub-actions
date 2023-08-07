@@ -20,12 +20,17 @@ jobs:
         steps:
             - name: Get code from repo
               uses: actions/checkout@v3
-            - name: run server
-              run: npm start & npx wait-on http://127.0.0.1:3000
+
             - name: install dependecies
               run: npm ci
+            - name: run server
+              run: npm start & npx wait-on http://127.0.0.1:3000
             - name: run tests
               run: npm test
     # build stage
-
+    build:
+        runs-on: ubuntu-latest
+        steps:
+            - name: get code from repo
+              uses: actions/checkout@v3
     # deploy stage
